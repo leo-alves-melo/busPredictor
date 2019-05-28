@@ -1,0 +1,24 @@
+{
+  "timestamp": "2018-06-11T17:32:01.844Z",
+  "payload": {
+    "numero_satelites": 12,
+    "hora_coletado": "2018-06-11 14:31:55",
+    "_lat": -22.829637,
+    "_pdop": 1.5,
+    "_elev": 647.6,
+    "id_linha": 2,
+    "velocidade_media_gps": 0.02,
+    "temperatura": 42.03,
+    "_lon": -47.060962
+  },
+  "ingestedTimestamp": "2018-06-11T17:32:01.844Z",
+  "incoming": {
+    "deviceGuid": "6ce968a1-a32b-4f8c-bc39-4463f50f4591",
+    "channel": "info"
+  },
+  "geolocation": {
+    "lat": -22.829637,
+    "lon": -47.060962,
+    "elev": 647.6
+  }
+}
