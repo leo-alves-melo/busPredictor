@@ -1,0 +1,157 @@
+{u'timestamp': u'2019-05-10T12:53:55.645Z', u'ingestedTimestamp': u'2019-05-10T12:53:55.645Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-10 09:53:51', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 25, u'velocidade_media_gps': 22.21, u'temperatura': 36.66, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T13:32:02.809Z', u'ingestedTimestamp': u'2019-05-10T13:32:02.809Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-10 10:32:00', u'_lat': u'', u'_pdop': 100, u'_elev': 606.2, u'id_linha': 4, u'sinal': 24, u'velocidade_media_gps': 32.11, u'temperatura': 38.12, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T13:33:17.171Z', u'ingestedTimestamp': u'2019-05-10T13:33:17.171Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-10 10:33:13', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 26, u'velocidade_media_gps': 7.61, u'temperatura': 38.12, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T13:33:25.992Z', u'ingestedTimestamp': u'2019-05-10T13:33:25.992Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-10 10:33:13', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 26, u'velocidade_media_gps': 7.61, u'temperatura': 38.12, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T17:02:03.185Z', u'ingestedTimestamp': u'2019-05-10T17:02:03.185Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-10 14:02:00', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 21.11, u'temperatura': 42.03, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T17:02:15.011Z', u'ingestedTimestamp': u'2019-05-10T17:02:15.011Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-10 14:02:12', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 24, u'velocidade_media_gps': 5.61, u'temperatura': 42.03, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T15:36:44.073Z', u'ingestedTimestamp': u'2019-05-14T15:36:44.073Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-14 12:36:41', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 2, u'sinal': 14, u'velocidade_media_gps': 6.41, u'temperatura': 38.61, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T15:36:49.274Z', u'ingestedTimestamp': u'2019-05-14T15:36:49.274Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-14 12:36:41', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 2, u'sinal': 14, u'velocidade_media_gps': 6.41, u'temperatura': 38.61, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-15T11:26:54.624Z', u'ingestedTimestamp': u'2019-05-15T11:26:54.624Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-15 08:26:51', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 22, u'velocidade_media_gps': 13.17, u'temperatura': 33.72, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-15T11:26:56.579Z', u'ingestedTimestamp': u'2019-05-15T11:26:56.579Z', u'incoming': {u'deviceGuid': u'a028f083-8375-45ec-a42f-7e864fd5f8d7', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-15 08:26:54', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 18, u'velocidade_media_gps': 0.11, u'temperatura': 33.72, u'_lon': u''}}
+coletando: eb0ec27f-16d0-4504-a331-af5b1e24eac6
+2018-07-16 20:31:30.303000
+2018-08-24 13:59:39.352000
+2018-10-17 11:56:14.147000
+2018-12-12 09:41:55.259000
+2019-02-06 21:27:55.268000
+2019-04-11 12:00:37.860000
+errado:
+{u'timestamp': u'2019-05-09T16:07:02.419Z', u'ingestedTimestamp': u'2019-05-09T16:07:02.419Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-09 13:07:00', u'_lat': u'', u'_pdop': 100, u'_elev': u'', u'id_linha': 1, u'sinal': 20, u'velocidade_media_gps': 0.11, u'temperatura': 41.54, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T16:07:04.591Z', u'ingestedTimestamp': u'2019-05-09T16:07:04.591Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-09 13:07:02', u'_lat': u'', u'_pdop': 100, u'_elev': u'', u'id_linha': 1, u'sinal': 20, u'velocidade_media_gps': 0.11, u'temperatura': 41.54, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T16:11:31.124Z', u'ingestedTimestamp': u'2019-05-09T16:11:31.124Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-09 13:11:28', u'_lat': u'', u'_pdop': 100, u'_elev': 648.2, u'id_linha': 1, u'sinal': 23, u'velocidade_media_gps': 0.31, u'temperatura': 42.03, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T16:11:33.298Z', u'ingestedTimestamp': u'2019-05-09T16:11:33.298Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-09 13:11:30', u'_lat': u'', u'_pdop': 100, u'_elev': 648.2, u'id_linha': 1, u'sinal': 23, u'velocidade_media_gps': 0.31, u'temperatura': 42.03, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T18:10:56.643Z', u'ingestedTimestamp': u'2019-05-09T18:10:56.643Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-09 15:10:51', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 13, u'velocidade_media_gps': 0.91, u'temperatura': 41.54, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T19:33:21.668Z', u'ingestedTimestamp': u'2019-05-09T19:33:21.668Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-09 16:33:18', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 20, u'velocidade_media_gps': 0.93, u'temperatura': 39.1, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T10:24:04.404Z', u'ingestedTimestamp': u'2019-05-10T10:24:04.404Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-10 07:24:01', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 12, u'velocidade_media_gps': 0.11, u'temperatura': 26.39, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T11:23:08.438Z', u'ingestedTimestamp': u'2019-05-10T11:23:08.438Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-10 08:23:06', u'_lat': u'', u'_pdop': 100, u'_elev': 592.8, u'id_linha': 1, u'sinal': 19, u'velocidade_media_gps': 0.7, u'temperatura': 33.72, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T11:34:13.155Z', u'ingestedTimestamp': u'2019-05-10T11:34:13.155Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-10 08:34:09', u'_lat': u'', u'_pdop': 100, u'_elev': u'', u'id_linha': 1, u'sinal': 21, u'velocidade_media_gps': 0.13, u'temperatura': 35.19, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T11:34:17.296Z', u'ingestedTimestamp': u'2019-05-10T11:34:17.296Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-10 08:34:09', u'_lat': u'', u'_pdop': 100, u'_elev': u'', u'id_linha': 1, u'sinal': 21, u'velocidade_media_gps': 0.13, u'temperatura': 35.19, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T13:47:02.864Z', u'ingestedTimestamp': u'2019-05-10T13:47:02.864Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-10 10:46:58', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 19, u'velocidade_media_gps': 14.61, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T13:47:05.824Z', u'ingestedTimestamp': u'2019-05-10T13:47:05.824Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-10 10:46:58', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 19, u'velocidade_media_gps': 14.61, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T13:48:07.840Z', u'ingestedTimestamp': u'2019-05-10T13:48:07.840Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-10 10:48:04', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 19, u'velocidade_media_gps': 0.31, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T13:48:12.350Z', u'ingestedTimestamp': u'2019-05-10T13:48:12.350Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-10 10:48:04', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 19, u'velocidade_media_gps': 0.31, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T14:09:44.232Z', u'ingestedTimestamp': u'2019-05-10T14:09:44.232Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-10 11:09:42', u'_lat': u'', u'_pdop': 13.1, u'_elev': u'', u'id_linha': 1, u'sinal': 10, u'velocidade_media_gps': 0.02, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T16:04:05.256Z', u'ingestedTimestamp': u'2019-05-10T16:04:05.256Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-10 13:04:02', u'_lat': u'', u'_pdop': 100, u'_elev': 640.6, u'id_linha': 1, u'sinal': 22, u'velocidade_media_gps': 0.91, u'temperatura': 44.97, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T16:04:08.983Z', u'ingestedTimestamp': u'2019-05-10T16:04:08.983Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-10 13:04:06', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 22, u'velocidade_media_gps': 0.91, u'temperatura': 44.97, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T17:09:01.269Z', u'ingestedTimestamp': u'2019-05-10T17:09:01.269Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-10 14:08:56', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 18, u'velocidade_media_gps': 10.41, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T17:09:03.422Z', u'ingestedTimestamp': u'2019-05-10T17:09:03.422Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-10 14:08:56', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 18, u'velocidade_media_gps': 10.41, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T17:13:50.452Z', u'ingestedTimestamp': u'2019-05-10T17:13:50.452Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-10 14:13:36', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 14, u'velocidade_media_gps': 4.11, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T17:55:41.482Z', u'ingestedTimestamp': u'2019-05-10T17:55:41.482Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-10 14:55:39', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 17, u'velocidade_media_gps': 0.91, u'temperatura': 41.06, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T18:08:25.374Z', u'ingestedTimestamp': u'2019-05-10T18:08:25.374Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-10 15:08:14', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 7, u'velocidade_media_gps': 0.11, u'temperatura': 42.52, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T19:52:31.456Z', u'ingestedTimestamp': u'2019-05-10T19:52:31.456Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-10 16:52:22', u'_lat': u'', u'_pdop': 3, u'_elev': 640.6, u'id_linha': 1, u'sinal': 11, u'velocidade_media_gps': 2.41, u'temperatura': 39.1, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-10T21:03:38.640Z', u'ingestedTimestamp': u'2019-05-10T21:03:38.640Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-10 18:03:17', u'_lat': u'', u'_pdop': 1.9, u'_elev': 617.4, u'id_linha': 1, u'sinal': 16, u'velocidade_media_gps': 16.71, u'temperatura': 36.17, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T11:41:34.737Z', u'ingestedTimestamp': u'2019-05-13T11:41:34.737Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-13 08:41:17', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 16, u'velocidade_media_gps': 2.09, u'temperatura': 36.66, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T12:34:37.493Z', u'ingestedTimestamp': u'2019-05-13T12:34:37.493Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-13 09:34:35', u'_lat': u'', u'_pdop': 2.8, u'_elev': 569.8, u'id_linha': 1, u'sinal': 17, u'velocidade_media_gps': 27.71, u'temperatura': 39.1, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T12:49:54.808Z', u'ingestedTimestamp': u'2019-05-13T12:49:54.808Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-13 09:49:51', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 17, u'velocidade_media_gps': 0.31, u'temperatura': 39.59, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T12:49:58.563Z', u'ingestedTimestamp': u'2019-05-13T12:49:58.563Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-13 09:49:51', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 17, u'velocidade_media_gps': 0.31, u'temperatura': 39.59, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T13:34:40.779Z', u'ingestedTimestamp': u'2019-05-13T13:34:40.779Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-13 10:34:34', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 11, u'velocidade_media_gps': 0.91, u'temperatura': 39.59, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T21:12:39.171Z', u'ingestedTimestamp': u'2019-05-13T21:12:39.171Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-13 18:12:37', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 14, u'velocidade_media_gps': 1.96, u'temperatura': 37.15, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T21:12:41.760Z', u'ingestedTimestamp': u'2019-05-13T21:12:41.760Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-13 18:12:39', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 14, u'velocidade_media_gps': 1.74, u'temperatura': 37.15, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-13T21:12:56.351Z', u'ingestedTimestamp': u'2019-05-13T21:12:56.351Z', u'incoming': {u'deviceGuid': u'eb0ec27f-16d0-4504-a331-af5b1e24eac6', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-13 18:12:50', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 1, u'sinal': 14, u'velocidade_media_gps': 11.61, u'temperatura': 37.15, u'_lon': u''}}
+coletando: 826f5fe4-ec9b-4de7-87f8-93be40963612
+2018-07-10 20:28:30.328000
+2018-08-14 19:37:04.463000
+2018-09-24 12:44:24.830000
+2018-11-01 19:18:04.287000
+2018-12-17 17:05:46.138000
+2019-01-30 12:31:45.634000
+2019-03-18 12:26:37.850000
+2019-04-26 10:32:25.937000
+errado:
+{u'timestamp': u'2019-05-09T16:09:10.209Z', u'ingestedTimestamp': u'2019-05-09T16:09:10.209Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 5, u'hora_coletado': u'2019-05-09 13:09:08', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 37.71, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T16:10:07.646Z', u'ingestedTimestamp': u'2019-05-09T16:10:07.646Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-09 13:10:04', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 15.91, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T16:10:14.291Z', u'ingestedTimestamp': u'2019-05-09T16:10:14.291Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-09 13:10:11', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 22, u'velocidade_media_gps': 15.41, u'temperatura': 41.06, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T16:56:00.407Z', u'ingestedTimestamp': u'2019-05-09T16:56:00.407Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-09 13:55:58', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 25, u'velocidade_media_gps': 38.21, u'temperatura': 43.5, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T16:56:02.444Z', u'ingestedTimestamp': u'2019-05-09T16:56:02.444Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 4, u'hora_coletado': u'2019-05-09 13:56:00', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 25, u'velocidade_media_gps': 38.41, u'temperatura': 43.5, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T18:53:04.621Z', u'ingestedTimestamp': u'2019-05-09T18:53:04.621Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-09 15:53:00', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 27.71, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-09T18:53:07.436Z', u'ingestedTimestamp': u'2019-05-09T18:53:07.436Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-09 15:53:00', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 27.71, u'temperatura': 40.57, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T10:44:08.517Z', u'ingestedTimestamp': u'2019-05-14T10:44:08.517Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-14 07:44:02', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 41.61, u'temperatura': 33.24, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T10:44:10.297Z', u'ingestedTimestamp': u'2019-05-14T10:44:10.297Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-14 07:44:02', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 41.61, u'temperatura': 33.24, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T10:45:06.617Z', u'ingestedTimestamp': u'2019-05-14T10:45:06.617Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 07:45:03', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 23, u'velocidade_media_gps': 3.61, u'temperatura': 33.24, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T10:45:18.197Z', u'ingestedTimestamp': u'2019-05-14T10:45:18.197Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-14 07:45:15', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 13.61, u'temperatura': 33.24, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T10:45:20.192Z', u'ingestedTimestamp': u'2019-05-14T10:45:20.192Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 2, u'hora_coletado': u'2019-05-14 07:45:18', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 18.21, u'temperatura': 33.24, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T11:25:41.708Z', u'ingestedTimestamp': u'2019-05-14T11:25:41.708Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 08:25:37', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 22, u'velocidade_media_gps': 12.48, u'temperatura': 36.17, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T11:25:43.758Z', u'ingestedTimestamp': u'2019-05-14T11:25:43.758Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 08:25:37', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 22, u'velocidade_media_gps': 12.48, u'temperatura': 36.17, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T11:25:45.791Z', u'ingestedTimestamp': u'2019-05-14T11:25:45.791Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 08:25:43', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 10.2, u'temperatura': 36.17, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T11:25:47.848Z', u'ingestedTimestamp': u'2019-05-14T11:25:47.848Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 08:25:45', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 6.19, u'temperatura': 35.68, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T15:05:39.775Z', u'ingestedTimestamp': u'2019-05-14T15:05:39.775Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-14 12:05:37', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 38.61, u'temperatura': 43.5, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T15:05:48.331Z', u'ingestedTimestamp': u'2019-05-14T15:05:48.331Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 3, u'hora_coletado': u'2019-05-14 12:05:39', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 38.71, u'temperatura': 43.5, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T16:45:27.029Z', u'ingestedTimestamp': u'2019-05-14T16:45:27.029Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 0, u'hora_coletado': u'2019-05-14 13:45:24', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 33.91, u'temperatura': 41.06, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:46:24.365Z', u'ingestedTimestamp': u'2019-05-14T19:46:24.365Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:46:21', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 25, u'velocidade_media_gps': 13.67, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:46:28.496Z', u'ingestedTimestamp': u'2019-05-14T19:46:28.496Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:46:21', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 25, u'velocidade_media_gps': 13.67, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:47:11.186Z', u'ingestedTimestamp': u'2019-05-14T19:47:11.186Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:47:08', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 23, u'velocidade_media_gps': 18.22, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:47:13.199Z', u'ingestedTimestamp': u'2019-05-14T19:47:13.199Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:47:11', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 29, u'velocidade_media_gps': 22.8, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:47:15.130Z', u'ingestedTimestamp': u'2019-05-14T19:47:15.130Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:47:13', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 18.72, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:47:17.011Z', u'ingestedTimestamp': u'2019-05-14T19:47:17.011Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:47:15', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 4.83, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:47:28.638Z', u'ingestedTimestamp': u'2019-05-14T19:47:28.638Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:47:26', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 27, u'velocidade_media_gps': 0.07, u'temperatura': 39.59, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:47:44.178Z', u'ingestedTimestamp': u'2019-05-14T19:47:44.178Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:47:38', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 28, u'velocidade_media_gps': 4.67, u'temperatura': 39.59, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:48:06.065Z', u'ingestedTimestamp': u'2019-05-14T19:48:06.065Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:48:03', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 31, u'velocidade_media_gps': 0.06, u'temperatura': 40.08, u'_lon': u''}}
+errado:
+{u'timestamp': u'2019-05-14T19:48:08.516Z', u'ingestedTimestamp': u'2019-05-14T19:48:08.516Z', u'incoming': {u'deviceGuid': u'826f5fe4-ec9b-4de7-87f8-93be40963612', u'channel': u'info'}, u'payload': {u'numero_satelites': 1, u'hora_coletado': u'2019-05-14 16:48:06', u'_lat': u'', u'_pdop': u'', u'_elev': u'', u'id_linha': 4, u'sinal': 30, u'velocidade_media_gps': 0.02, u'temperatura': 40.08, u'_lon': u''}}
