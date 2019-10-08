@@ -21,6 +21,23 @@ def plot_path(path_df):
 		
 	plt.show()
 
+def save_path(path_df, name):
+
+	latitudes = path_df.latitude
+	longitudes = path_df.longitude
+	
+	numberOfDots = len(path_df.index)
+	colors = cm.rainbow(np.linspace(0, 1, numberOfDots))
+	
+	plt.margins(0) # Fit the map in the image
+	
+	plt.scatter(longitudes, latitudes, color=colors)
+	
+	plt.scatter(bus_stop_longitude, bus_stop_latitude, marker='*')
+		
+	plt.savefig(name)
+	plt.clf()
+
 def plot_correctness(correctness):
 	plt.plot(range(len(correctness)), correctness)
 	plt.ylabel('Porcentagem')

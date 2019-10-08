@@ -1,0 +1,147 @@
+//
+//  AppDelegate.swift
+//  Bemacash
+//
+//  Created by SERGIO J RAFAEL ORDINE on 09/10/18.
+//  Copyright © 2018 Bemacash. All rights reserved.
+//
+
+import UIKit
+import UserNotifications
+import Firebase
+import PromiseKit
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        application.registerForRemoteNotifications()
+        // Sets notification delegate to keep track of incoming push notifications
+        UNUserNotificationCenter.current().delegate = self
+        
+        // The Background job manager has a flag to control if there is a job executing.
+        // If the app just finished launching, there is no process executing, to we clear this flag to keep consistency
+        LocalBackgroundJobManager().stopExecutingProcess()
+        
+        self.startServices()
+        
+        FirebaseApp.configure()
+        
+        DefaultCoreDataManager.shared.startTransaction { (context) -> Promise<Void> in
+            LocalShopModulesRepository().save(ShopModules(id: 21433, shopId: 124124, moduleId: .fashion, enabled: true), context: context, isSyncing: false)
+        }
+        
+        return true
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        LocalBackgroundJobManager().restartBackgroundTask()
+    }
+    
+    private func startServices() {
+        // Starts upload monitoring job
+        DefaultUploadManager.startJob()
+        
+        // Starts fiscal contingency monitoring job
+        DefaultFiscalContingencyStateMachineManager.startJob()
+        
+        // Starts the local network monitoring, to be used for local syncronization
+        DefaultLocalNetworkMechanism.start()
+        
+        // Starts ifood service that monitors new orders and notify the user
+        DefaultIfoodManager.startService()
+        
+        // Starts deferred payment service that monitors late deferredPayments and notify the user
+        DefaultDeferredPaymentManager.startService()
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        if !(response.actionIdentifier == UNNotificationDismissActionIdentifier) {
+            NotificationHandler.shared.handlerNotificationTap(of: response.notification)
+        }
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler:
+                                    @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        // The notification about checking late deferred payments must be done silently
+        if notification.request.identifier == DefaultDeferredPaymentManager.checkDeferredPaymentNotificationId {
+            DefaultDeferredPaymentManager.service.checkDeadline()
+            return
+        }
+        
+        // Assures notification will be shown even when app is in the foreground
+        completionHandler([.alert, .badge, .sound])
+    }
+}
+
+class NotificationHandler {
+    static var shared: NotificationHandler = NotificationHandler()
+    
+    private init() { }
+    
+    func handlerNotificationTap(of notification: UNNotification) {
+        switch notification.request.identifier {
+        case DefaultIfoodManager.service.newIfoodOrderNotificationId:
+            guard let tabBarController: TabBarController = UIApplication.shared.keyWindow?.rootViewController?
+                .presentedViewController as? TabBarController else {
+                    return
+            }
+            
+            guard let navigationController: UINavigationController = (tabBarController
+                .viewControllers?[0] as? UINavigationController) else {
+                    return
+            }
+            
+            guard let pointOfSalesViewController: PointOfSalesViewController = navigationController.viewControllers
+                .first as? PointOfSalesViewController else {
+                    return
+            }
+            
+            tabBarController.selectedIndex = 0
+            navigationController.popToRootViewController(animated: false)
+            pointOfSalesViewController.segmentedControl.selectedSegmentIndex = 2
+            pointOfSalesViewController.segmentedControlChanged(pointOfSalesViewController.segmentedControl)
+        
+        case DefaultDeferredPaymentManager.unpaidDeferredPaymentNotificationId:
+            guard let tabBarController: TabBarController = UIApplication.shared.keyWindow?.rootViewController?
+                .presentedViewController as? TabBarController else {
+                    return
+            }
+            
+            guard let navigationController: UINavigationController = (tabBarController
+                .viewControllers?[0] as? UINavigationController) else {
+                    return
+            }
+            
+            guard let pointOfSalesViewController: PointOfSalesViewController = navigationController.viewControllers
+                .first as? PointOfSalesViewController else {
+                    return
+            }
+            
+            tabBarController.selectedIndex = 0
+            navigationController.popToRootViewController(animated: false)
+            pointOfSalesViewController.segmentedControl.selectedSegmentIndex = 0
+            pointOfSalesViewController.segmentedControlChanged(pointOfSalesViewController.segmentedControl)
+            
+            pointOfSalesViewController
+                .performSegue(withIdentifier: PointOfSalesViewController.SegueIdentifiers.showDeferredPayments.rawValue,
+                              sender: nil)
+        default:
+            break
+        }
+        
+    }
+}

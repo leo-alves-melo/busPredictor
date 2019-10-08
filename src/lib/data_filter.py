@@ -180,15 +180,15 @@ def create_paths(df):
 	path_index = 0
 	count_int = 0
 	total = len(df.index)
-	print 'iniciando...'
+	print('iniciando...')
 	has_distance_from_greater_from_home = False
 	for index, row in df.iterrows():
 		
 		if 100*index/total > count_int + 1:
 			count_int += 1
-			print str(count_int) + "% - " + str(len(paths_df.index)),
+			#print str(count_int) + "% - " + str(len(paths_df.index)),
 			if count_int % 10 == 0:
-				print ''
+				print('')
 			
 			
 		still_appending, current_path_df, has_distance_from_greater_from_home = validate_and_append_next_coordinate(row, current_path_df, has_distance_from_greater_from_home)
