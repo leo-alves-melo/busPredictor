@@ -1,0 +1,270 @@
+% Exemplo de relatório técnico do IC
+% Criado por P.J.de Rezende antes do Alvorecer da História.
+% Modificado em 97-06-15 e 01-02-26 por J.Stolfi.
+% Last edited on 2003-06-07 21:12:18 by stolfi
+% modificado em 1o. de outubro de 2008
+% modificado em 2012-09-25 para ajustar o pacote UTF8. Contribuicao de
+%   Rogerio Cardoso
+
+\documentclass[11pt,twoside]{article}
+\usepackage{techrep-PFG-ic}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{graphicx}
+
+\usepackage{cleveref}
+
+%%% SE USAR INGLÊS, TROQUE AS ATIVAÇÕES DOS DOIS COMANDOS A SEGUIR:
+\usepackage[brazil]{babel}
+%% \usepackage[english]{babel}
+
+%%% SE USAR CODIFICAÇÃO LATIN1, TROQUE AS ATIVAÇÕES DOS DOIS COMANDOS A
+%%% SEGUIR:
+%% \usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{courier}
+
+\usepackage{color}
+\renewcommand{\lstlistingname}{Bloco de texto}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle, basicstyle=\footnotesize\ttfamily}
+
+\begin{document}
+
+%%% PÁGINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% Número do relatório
+\TRNumber{23}
+
+% DATA DE PUBLICAÇÃO (PARA A CAPA)
+%
+\TRYear{19}  % Dois dígitos apenas
+\TRMonth{07} % Numérico, 01-12
+
+% LISTA DE AUTORES PARA CAPA (sem afiliações).
+\TRAuthor{L. A. Melo}
+
+% TÍTULO PARA A CAPA (use \\ para forçar quebras de linha).
+\TRTitle{Análise de dados de geolocalização do veículo circular interno da Unicamp}
+
+\TRMakeCover
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% O que segue é apenas uma sugestão - sinta-se à vontade para
+% usar seu formato predileto, desde que as margens tenham pelo
+% menos 25mm nos quatro lados, e o tamanho do fonte seja pelo menos
+% 11pt. Certifique-se também de que o título e lista de autores
+% estão reproduzidos na íntegra na página 1, a primeira depois da
+% página de capa.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nomes de autores ABREVIADOS e titulo ABREVIADO,
+% para cabeçalhos em cada página.
+%
+\markboth{Melo}{Trajeto Circular Interno}
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TÍTULO e NOMES DOS AUTORES, completos, para a página 1.
+% Use "\\" para quebrar linhas, "\and" para separar autores.
+%
+\title{Análise de dados de geolocalização do veículo circular interno da Unicamp}
+\author{Leonardo Alves de Melo\thanks{Instituto  de Computação, Universidade
+Estadual  de Campinas, 13081-970  Campinas,  SP.}\thanks{Konker Labs}}
+
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract} 
+
+Este trabalho destinou-se a propor e analisar algoritmos que preveem em tempo real trajetos do veículo circular interno da Unicamp de modo a minimizar o problema de falha humana ao se indicar manualmente qual itinerário está sendo realizado pelo motorista. O melhor algoritmo investigado alcançou 90,5\% de acerto entre os dados coletados e com ele foi possível propor uma melhoria para o sistema.
+
+\end{abstract}
+
+\section{Introdução}
+Uma das aplicações esperadas para a Internet das Coisas é a gestão e manutenção inteligente de linhas de ônibus públicos. Neste contexto, uma análise detalhada da geolocalização de veículos os quais realizam um determinado trajeto permitiria melhorar a experiência dos seus usuários.  Tomando como exemplo a pesquisa de Gong et. al. \cite{GONG}, este tipo de análise permitiu a predição do tempo de chegada de ônibus em cada ponto utilizando como base dados do histórico das leituras de dispositivos GPS presentes em cada veículo. Os pesquisadores desenvolveram um modelo híbrido de predição o qual foi testado em Shenyang, China, e obteve resultados melhores do que a tabela predefinida de horários.
+
+Outra aplicação desenvolvida por Chen et. al. \cite{CHEN} utilizou os dados de localização de táxis para identificar padrões de mobilidade e propor novas rotas de ônibus noturnos. O projeto consistiu em agrupar as principais áreas em que os táxis costumam pegar e deixar os clientes, criando assim candidatos para serem possíveis pontos para as novas rotas de ônibus, de modo que os pontos iniciais correspondem onde os taxistas mais pegam os clientes, e os finais onde mais os deixam. Uma vez tendo os pontos, foi aplicado um algoritmo para gerar grafos que correspondem aos melhores percursos a serem feitos por esses ônibus, os quais os piores candidatos a pontos eram retirados com bases em restrições predefinidas. Foi possível demonstrar que as rotas propostas se saíram melhor do que as recentementes criadas em Hangzhou, China. 
+
+No intuito de melhorar a previsão de tráfego e tempo de viagem, a pesquisa de Simmons et. al. \cite{SIMONS} conseguiu prever com 98\% de certeza o trajeto que um determinado motorista irá realizar tomando como base suas viagens passadas. Foi utilizado um algoritmo de Modelo Escondido de Markov para estruturar as rotas de chegadas dos motoristas usando dados de GPS dos carros. Com o modelo foi possível fazer essa predição em tempo real do destino dos motoristas e otimizar o planejamento das viagens, sugerindo caminhos que evitem muito tráfego.    
+
+Neste projeto foi tratado o sistema que gerencia os ônibus circulares internos da Unicamp e como a proposta de algoritmos de análise de suas posições pode melhorar a experiência de seus usuários e a gestão do transporte interno da Universidade, reduzindo o número de falhas humanas, estendendo os trabalhos do \emph{Smart Campus} \cite{SMART}.
+
+\section{Justificativa}
+
+Para poder comportar todos os mais de 31 mil alunos do campus de Barão Geraldo, a Universidade Estadual de Campinas oferece um serviço de transporte conhecido como ``Veículo Circular Interno", o qual é composto por ônibus que fazem diferentes trajetos dentro da universidade. Como forma de melhorar esse serviço, a iniciativa \emph{Smart Campus}, a qual compreende um conjunto de projetos que visam implementar o conceito de Internet das Coisas na Unicamp, propôs colocar sensores GPS em cada veículo, de modo a coletar seus dados de coordenadas geográficas e enviar em tempo real para um servidor, permitindo que os usuários do serviço pudessem visualizar o ônibus em tempo real por meio do aplicativo ``Unicamp Serviços". 
+
+Atualmente, o motorista do ônibus deve apertar um botão no aparelho que contém o GPS para identificar qual o trajeto que ele realizará. Eventualmente pode ocorrer do motorista apertar o botão errado ou simplesmente esquecer de apertá-lo, gerando uma inconsistência e fazendo com que usuários de uma determinada linha não possam encontrá-la por meio do aplicativo. Uma imagem representativa dessa inconsistência pode ser vista na figura \ref{fig:rota-errada}, onde o veículo, representado em amarelo, não se encontra dentro do trajeto esperado, representado em azul, decorrido de uma falha humana. Se fosse possível identificar programaticamente qual a rota que o transporte está realizando com base nas leituras instantâneas de sua posição esse tipo de problema não existiria.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{rota_errada.png}
+  \caption{Foto de um circular realizando o trajeto incorreto}
+  \label{fig:rota-errada}
+\end{figure}
+
+\section{Objetivos}
+
+Este projeto tem como objetivo melhorar a experiência dos usuários do veículo circular interno da Unicamp, desenvolvendo um algoritmo capaz de prever qual a rota que o ônibus se encaixa com base nas leituras instantâneas de sua posição e com este algoritmo propor modos de se minimizar a falha humana.
+
+\section{Desenvolvimento do Trabalho}
+
+O desenvolvimento do trabalho consistiu em três etapas: na primeira as características do sistema de ônibus da Unicamp foram estudadas, na segunda foi construída uma base de dados com todos os caminhos realizados por todos os circulares em um determinado período de tempo, na terceira foram investigados diversos algoritmos para tentar predizer a rota com base nas leituras. Todas podem ser vistas a seguir.
+
+\subsection{Entendendo o Problema}
+
+Foi investigado que existem atualmente 4 linhas que atendem ao campus: \emph{Circular 1}, \emph{Circular 2 FEC}, \emph{Circular 2 Museu} e \emph{Circular Noturno}, em que todas começam e terminam no terminal de ônibus da Unicamp, como pode ser visto em suas trajetórias na figura 2. Um dispositivo nunca troca de veículo e o mesmo ônibus pode acabar realizando diferentes trajetos no mesmo dia, ou seja, se um motorista esquecer de trocar a configuração do dispositivo entre um trajeto e outro, a exibição do ônibus para o usuário ficará incorreta.
+
+Foi descoberto também que o servidor que recebe as informações dos dispositivos dos circulares contém uma base de dados com uma lista de 9.829.780 entidades JSONs, as quais representam cada leitura instantânea de um dispositivo de um circular coletado entre 11 de Junho de 2018 e 18 de Abril de 2019. Essa base de dados foi utilizada neste projeto e um exemplo de uma entidade JSON dela pode ser vista no Bloco de texto \ref{json}.
+
+\begin{figure}
+    \centering
+    \label{fig:circulares}
+    \begin{subfigure}{6cm}
+        \centering\includegraphics[width=5cm]{circular1.jpg}
+        \label{circular1}
+        \caption{Circular 1}
+    \end{subfigure}
+    \begin{subfigure}{6cm}
+        \centering\includegraphics[width=5cm]{noturno.jpg}
+        \label{noturno}
+        \caption{Circular Noturno}
+    \end{subfigure}
+    \begin{subfigure}{6cm}
+        \centering\includegraphics[width=5cm]{fec.jpg}
+        \label{fec}
+        \caption{Circular 2 FEC}
+    \end{subfigure}
+    \begin{subfigure}{6cm}
+        \centering\includegraphics[width=5cm]{museu.jpg}
+        \label{museu}
+        \caption{Circular 2 Museu}
+    \end{subfigure}
+    \caption{Trajetórias dos circulares}
+\end{figure}
+
+\subsection{Construindo a Base de Dados de Caminhos}
+
+A partir da base de dados descoberta na etapa 1, foi realizada uma filtragem de modo a agrupar as entidades que representam o mesmo trajeto realizado, ou seja, supondo que um ônibus tenha realizado o itinerário do \emph{Circular 1}, a filtragem deve agrupar todas as entidades enviadas pelo dispositivo desse ônibus desde a saída até a chegada no ponto do terminal, ordenadas pelo tempo de envio. 
+
+\begin{lstlisting}[caption={Exemplo de entidade JSON presente no Banco de Dados}, label=json]
+{
+  "timestamp": "2018-06-11T17:32:01.844Z",
+  "payload": {
+    "numero_satelites": 12,
+    "hora_coletado": "2018-06-11 14:31:55",
+    "_lat": -22.829637,
+    "_pdop": 1.5,
+    "_elev": 647.6,
+    "id_linha": 2,
+    "velocidade_media_gps": 0.02,
+    "temperatura": 42.03,
+    "_lon": -47.060962
+  },
+  "ingestedTimestamp": "2018-06-11T17:32:01.844Z",
+  "incoming": {
+    "deviceGuid": "6ce968a1-a32b-4f8c-bc39-4463f50f4591",
+    "channel": "info"
+  },
+  "geolocation": {
+    "lat": -22.829637,
+    "lon": -47.060962,
+    "elev": 647.6
+  }
+}
+\end{lstlisting}
+
+O algoritmo de filtragem levou em conta que as entidades já se encontravam agrupadas por \emph{deviceGuid} e ordenadas por \emph{hora\_coletado} no banco de dados e consistiu em cinco passos: 1) Crie um novo caminho; 2) Se a entidade atual estiver a 100 metros do terminal de ônibus, adicione esta entidade ao caminho, se não, descarte essa entidade e repita a etapa 2; 3) Se a entidade atual estiver a mais de 100 metros do terminal, adicione-a ao caminho, se não, descarte-a e repita o passo 3; 4) Adicione a entidade atual; 5) se estiver a 100 metros do terminal, finalize o caminho e volte ao passo 1, se não, repita o passo 4. Ao final, é esperado que o caminho gerado comece no terminal, se afaste dele ao realizar a trajetória e termine próximo dele. 
+
+Um exemplo de um caminho gerado por esse filtro pode ser visto na figura \ref{fig:caminho-circular}, onde é possível ver que os pontos referenciam o trajeto do \emph{Circular 2 Museu}, em que o ônibus inicia sua trajetória no ponto mais violeta e termina no ponto mais avermelhado passando por todo espectro de cores. Uma vez tendo todos os caminhos bem definidos, foi possível obter um arquivo \emph{CSV} com os campos de latitude, longitude, id da linha, data e hora de coleta e índice do caminho, em que linhas que tenham o mesmo índice do caminho pertencem ao mesmo caminho, e o id da linha representa qual informação da rota foi configurada pelo motorista.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{caminho-circular.png}
+    \caption{Exemplo de caminho do circular}
+    \label{fig:caminho-circular}
+\end{figure}
+
+\subsection{Investigando os Algoritmos}
+
+Foram propostos e testados ao total quatro algoritmos, em que um é programado explicitamente e três são de aprendizado de máquina. Todos podem ser vistos a seguir.
+
+\subsubsection{Algoritmo de Proximidade}
+
+O primeiro algoritmo programado explicitamente foi chamado de \emph{Algoritmo de Proximidade} e avalia cada uma das coordenadas de um dado caminho com pontos específicos definidos em que os trajetos dos circulares passam. Os pontos podem ser vistos na figura \ref{fig:pontos-proximidade}, em que o ponto em vermelho corresponde ao ponto em que apenas o \emph{Circular 2 Museu} passa, o ponto em azul corresponde ao ponto em que o \emph{Circular 2 Museu}, o \emph{Circular 2 FEC} e o \emph{Circular 1} passam, e o ponto verde corresponde ao ponto em que apenas o \emph{Circular 1} passa, como pode ser deduzido ao comparar com a figura 2.
+
+Uma vez tendo os pontos definidos, foi possível propor o seguinte algoritmo: se existe uma coordenada do caminho dentro de um raio de 300 metros do ponto vermelho, considere que este caminho é o \emph{Circular 2 Museu}, caso contrário, se existe uma coordenada no caminho dentro de um raio de 250 metros do ponto verde, considere que este caminho é o \emph{Circular 1}, caso contrário se existe uma coordenada no caminho dentro de um raio de 250 metros do ponto do ponto azul, considere que este caminho é o \emph{Circular 2 FEC}, caso contrário considere que este é o \emph{Circular Noturno}. Desse modo é possível por eliminação determinar qual é o trajeto que o ônibus está realizando.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{pontos-proximidade.png}
+    \caption{Pontos utilizados no \emph{Algoritmo de Proximidade}}
+    \label{fig:pontos-proximidade}
+\end{figure}
+
+\subsubsection{Algoritmos de Aprendizado de Máquina}
+
+Foram investigados os algoritmos de \emph{Naïve Bayes}, Rede Neural e \emph{Random Forest}. Levando em conta que todos esses algoritmos exigem uma entrada fixa, ou seja, a quantidade de \emph{features} de entrada deve ser igual para todos os caminhos testados, o que não é verdade porque cada caminho tem um número diferente de leituras, foi aplicado dois novos filtros para normalizar isso. O primeiro consistiu em criar uma janela de tempo que percorre as leituras de modo que a cada passo da janela todas as leituras que se encontrarem dentro dela se aglutinam em uma única leitura de valor médio de latitude, longitude, e hora coletado. No caso, foi escolhida uma janela de dez segundos e um passo também de dez segundos porque esse é o tempo estimado de uma parada do ônibus no ponto. Tomando como base que um trajeto do circular demora entre 20 a 30 minutos para ser concluído, então após aplicar o primeiro filtro espera-e obter caminhos de quantidade de leituras entre 120 e 180, a partir disso o segundo filtro foi proposto: dado o comprimento total do percurso dado, dividiu-se em 60 partes de iguais comprimentos, e para cada parte que houvesse mais de uma leitura registrada, aglutinaram essas leituras em uma nova posição dada a média de latitude, longitude e hora da coleta. O número 60 foi escolhido por ser metade do mínimo esperado de quantidade de leituras em um caminho, de modo que em um caminho normal haverá entre 2 e 3 leituras agrupadas por cada grupo aglutinado, o que não representa grande perda de informação e minimiza o uso de dados e tempo de processamento.
+
+\subsubsection{Treinos e Testes dos Algoritmos}
+
+Levando em conta que em uma aplicação real é esperado ter em tempo real a resposta do algoritmo sobre qual é o caminho desde seu início, então se fez necessário aumentar a base de dados de caminhos de modo que dado um caminho \emph{C} completo de \emph{n} leituras, criou-se um novo caminho apenas com a primeira leitura de \emph{C}, outro apenas com a primeira e segunda leituras de \emph{C}, e assim sucessivamente até obter \emph{n}-1 novos caminhos, o que simularia \emph{C} sendo percorrido. Todos os caminhos foram então separados em 80\% para treino e 20\% para teste, em que para os algoritmos de \emph{Random Forest} e Rede Neural dividiu-se a base de treino em 80\% para treino de parâmetros e 20\% para validação cruzada, de modo a encontrar os melhores parâmetros maximizando a porcentagem de acerto. Uma vez tendo os melhores parâmetros, os resultados foram testados na base de dados de teste e comparados com seus id linha correspondentes.
+
+\section{Resultados}
+
+Um gráfico comparativo com os resultados de cada algoritmo pode ser visto na figura \ref{fig:algo-grafos}. Foi possível perceber que o algoritmo de \emph{Random Forest} foi o que obteve o melhor resultado, alcançando uma média de 90,5\% de acerto em cada progressão de caminho, e ficando acima de todos os outros em todo o alcance do gráfico. É esperado pensar que \emph{Random Forest} se saiu melhor porque este algoritmo trabalha encontrando a melhor combinação possível de condicionais relacionando as \emph{features} que otimizem a porcentagem de acerto, ou seja, o \emph{Algoritmo de Proximidade} é um subconjunto dessa combinação de condicionais, o que satisfaz ele estar inferior ao primeiro.
+
+Como a porcentagem de acerto para os 25\% iniciais do melhor algoritmo é abaixo de 70\%, ainda não é possível propor substituir completamente a configuração manual do trajeto do circular, porém já é possível propor um tipo de sistema que sugere ao motorista rever o ajuste que ele havia colocado caso o algoritmo tenha um grau de certeza maior que um certo limiar de que a configuração possa estar equivocada, podendo assim reduzir o número de falhas humanas.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=13cm]{graf-algos-porcentagem.png}
+  \caption{Gráfico comparativo com os algoritmos trabalhados em porcentagem de completude}
+  \label{fig:algo-grafos}
+\end{figure}
+
+\section{Conclusões}
+
+Neste projeto foi possível investigar as características dos dados de geolocalização dos veículos dos circulares internos da Unicamp, bem como propor um algoritmo que alerte ao motorista em tempo real que provavelmente o percurso realizado difere do trajeto configurado no dispositivo do ônibus, podendo assim reduzir o número de falhas humanas. É esperado que como continuação deste projeto novos algoritmos sejam testados e que a porcentagem de acerto possa ser tal que o ajuste do dispositivo seja automática.
+
+\begin{thebibliography}{99}
+
+\bibitem{GONG} J. Gong, M. Liu and S. Zhang, ``Hybrid dynamic prediction model of bus arrival time based on weighted of historical and real-time GPS data" \textit{2013 25th Chinese Control and Decision Conference (CCDC)}, Guiyang, 2013, pp. 972-976.
+
+\bibitem{CHEN} C. Chen, D. Zhang, N. Li and Z. Zhou, ``B-Planner: Planning Bidirectional Night Bus Routes Using Large-Scale Taxi GPS Traces", in \textit{IEEE Transactions on Intelligent Transportation Systems}, vol. 15, no. 4, pp. 1451-1465, Aug. 2014.
+
+\bibitem{SIMONS} R. Simmons, B. Browning, Yilu Zhang and V. Sadekar, ``Learning to Predict Driver Route and Destination Intent", \textit{2006 IEEE Intelligent Transportation Systems Conference}, Toronto, Ont., 2006, pp. 127-132.
+
+\bibitem{SMART} SMART Campus Unicamp - Internet Das Coisas. \textbf{Smart Campus}, 2018. Disponível em: \textless http://smartcampus.prefeitura.unicamp.br\textgreater. Acesso em: 30, Abril de 2019.
+
+\end{thebibliography}
+
+\end{document}

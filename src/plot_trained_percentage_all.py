@@ -20,39 +20,48 @@ import json
 print('Inicializando...')
 plot = True
 if plot:
-	with open('../data/correctness_percentage_all_2.json') as arq:
+	with open('../data/correctness_percentage_all_ensembled.json') as arq:
 		correctness = json.load(arq)
-
-	with open('../data/correctness_percentage_conv_nn_separado.json') as arq:
-		correctness_nn = json.load(arq)
 
 	max_lenght = 100
 	for line in range(1, 5):
 
-		percentage_svm = [0.0]*max_lenght
-		percentage_nn = [0.0]*max_lenght
-		percentage_dump = [0.0]*max_lenght
-		percentage_rf = [0.0]*max_lenght
+		percentage_svm = [0.0]*(max_lenght+1)
+		percentage_nn = [0.0]*(max_lenght+1)
+		percentage_dump = [0.0]*(max_lenght+1)
+		percentage_rf = [0.0]*(max_lenght+1)
+		percentage_ensembled_nn = [0.0]*(max_lenght+1)
+		percentage_ensembled_rf = [0.0]*(max_lenght+1)
+		percentage_ensembled_bayes = [0.0]*(max_lenght+1)
+		percentage_ensembled_svm = [0.0]*(max_lenght+1)
 		for lenght in range(max_lenght):
 			
 			try:
-				percentage_svm[lenght+1] = 100 * float(correctness['correct_svm_' + str(lenght+1) + '_' + str(line) + '.0'])/float(correctness['total_' + str(lenght+1) + '_' + str(line) + '.0'])
-				percentage_dump[lenght+1] = 100 * float(correctness['correct_dump_' + str(lenght+1) + '_' + str(line) + '.0'])/float(correctness['total_' + str(lenght+1) + '_' + str(line) + '.0'])
-				percentage_rf[lenght+1] = 100 * float(correctness['correct_rf_' + str(lenght+1) + '_' + str(line) + '.0'])/float(correctness['total_' + str(lenght+1) + '_' + str(line) + '.0'])
-				percentage_nn[lenght+1] = 100 * float(correctness_nn['correct_conv_nn_' + str(lenght+1) + '_' + str(line) + '.0'])/float(correctness_nn['total_' + str(lenght+1) + '_' + str(line) + '.0'])
+				percentage_svm[lenght+1] = 100 * float(correctness['correct_svm_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+				percentage_dump[lenght+1] = 100 * float(correctness['correct_dump_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+				percentage_rf[lenght+1] = 100 * float(correctness['correct_rf_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+				percentage_nn[lenght+1] = 100 * float(correctness['correct_conv_nn_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+				percentage_ensembled_nn[lenght+1] = 100 * float(correctness['correct_ensembled_nn_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+				percentage_ensembled_rf[lenght+1] = 100 * float(correctness['correct_ensembled_rf_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+				percentage_ensembled_bayes[lenght+1] = 100 * float(correctness['correct_ensembled_bayes_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+				percentage_ensembled_svm[lenght+1] = 100 * float(correctness['correct_ensembled_svm_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
 			except:
 				pass
 
 		print('plotando...')
 
-		plt.plot(percentage_dump, marker='', color='green', label="Algoritmo de Proximidade")
+		plt.plot(percentage_dump, marker='', color='green', label=u"Algoritmo de Georreferência")
 		plt.plot(percentage_nn, marker='', markerfacecolor='blue', label="Rede Neural Convolucional")
 		plt.plot(percentage_svm, marker='', color='olive', label="SVM")
 		plt.plot(percentage_rf, marker='', color='red', label="Random Forest")
-		plt.legend(loc='upper left')
+		#plt.plot(percentage_ensembled_nn, marker='', color='yellow', label="Ensembled Learning NN")
+		plt.plot(percentage_ensembled_rf, marker='', color='black', label="Ensembled Learning RF")
+		plt.plot(percentage_ensembled_svm, marker='', color='orange', label="Ensembled Learning SVM")
+		plt.plot(percentage_ensembled_bayes, marker='', color='purple', label="Ensembled Learning Bayes")
+		plt.legend(loc='best')
 		plt.xlabel(u'Porcentagem de completude do caminho')
 		plt.ylabel(u'Porcentagem de acerto')
-		plt.title(u'Porcentagem de acerto x Porcentagem de completude do caminho para linha ' + str(line))
+		plt.title(u'Porcentagem de acerto x Porcentagem de completude do caminho')
 		plt.grid(True)
 		plt.show()
 		plt.clf()
