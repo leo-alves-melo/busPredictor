@@ -1,7 +1,6 @@
 # Classes definitions
 
 from constants import *
-from data_filter import *
 
 # Coordinate of a 
 class Coordinate():

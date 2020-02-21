@@ -102,13 +102,6 @@ def has_distance_greater_from_home(path_df, distance = 1):
 	return (path_df.apply(lambda row: distance_between(Coordinate(row['latitude'], row['longitude']), home) > distance, axis=1) == True).any()
 
 def has_distance_from_coordinate(path_df, coordinate, distance = 1):
-	class Coordinate():
-		def __init__(self, latitude, longitude, timestamp = None, line_id = None, guid = None):
-			self.latitude = latitude
-			self.longitude = longitude
-			self.timestamp = timestamp
-			self.line_id = line_id
-			self.device_guid = guid
 	return (path_df.apply(lambda row: distance_between(Coordinate(row['latitude'], row['longitude']), coordinate) < distance, axis=1) == True).any()
 
 def parse_coordinate(json):
@@ -125,8 +118,10 @@ def parse_coordinate(json):
 # Append the next coordenate if it is valid. Returns false when the path ended
 def validate_and_append_next_coordinate(row, path_df, has_distance_from_greater_from_home): 
 	
-	coordinate = Coordinate(row['latitude'], row['longitude'], row['timestamp'], row['line_id'])
-	
+	coordinate = Coordinate(row['latitude'].iloc[0], row['longitude'].iloc[0], row['timestamp'], row['line_id'].iloc[0])
+	print(coordinate.latitude)
+	print(coordinate.longitude)
+	print(coordinate.timestamp)
 	# Checks if it is the first coordinate of the path
 	if len(path_df.index) == 0:
 		
@@ -156,6 +151,10 @@ def validate_and_append_next_coordinate(row, path_df, has_distance_from_greater_
 		return False, path_df, has_distance_from_greater_from_home
 	
 	# Checks the id
+	print("Olha um")
+	print(coordinate.line_id)
+	print("Olha outro")
+	print(last_coordinate.line_id)
 	if coordinate.line_id != last_coordinate.line_id:
 		return False, path_df, has_distance_from_greater_from_home
 	
