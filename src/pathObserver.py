@@ -12,12 +12,15 @@ import time
 from datetime import datetime, timedelta
 import pandas as pd
 
+def sort_stats(stat):
+    return collect_time(stat['timestamp'])
+
 def date_now():
     return (arrow.utcnow().to('America/Sao_Paulo') - timedelta(minutes=1)).isoformat()
 
 def convert_to_seconds(text):
     date = collect_time(text)
-    return date#(date - date.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
+    return (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
 
 def create_or_append_path(path, location, has_distance_from_greater_from_home):
     
@@ -25,13 +28,17 @@ def create_or_append_path(path, location, has_distance_from_greater_from_home):
         df = pd.DataFrame()
     else:
         df = path
-    print(location)
-    row = pd.io.json.json_normalize([{'timestamp' : convert_to_seconds(location['timestamp']), 
-            'latitude': location['geolocation']['lat'], 
-            'longitude': location['geolocation']['lon'],
-            'line_id': location['payload']['id_linha']}])
+    try:
+        row = pd.io.json.json_normalize([{'timestamp' : collect_time(location['timestamp']), 
+                'latitude': location['geolocation']['lat'], 
+                'longitude': location['geolocation']['lon'],
+                'line_id': location['payload']['id_linha']}])
 
-    return validate_and_append_next_coordinate(row, df, has_distance_from_greater_from_home)
+        return validate_and_append_next_coordinate(row, df, has_distance_from_greater_from_home)
+    except:
+        print("Opa deu ruim")
+        print(location)
+        return True, df, has_distance_from_greater_from_home
 
 base_api = 'https://api.demo.konkerlabs.net'
 username = "student_smartcampus@konkerlabs.com"
@@ -50,6 +57,7 @@ while True:
     stats = oauth.get("https://api.demo.konkerlabs.net/v1/{}/incomingEvents?q=channel:{} timestamp:>{}&sort=latest&limit=100".format(application, channel, initial_timestamp)).json()['result']
     if stats != None and len(stats) > 0:
         initial_timestamp = date_now()
+        stats.sort(key=sort_stats)
         for location in stats:
             guid = location["incoming"]["deviceGuid"]
             has_distance_from_greater_from_home = False
