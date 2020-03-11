@@ -18,6 +18,10 @@ data_path = "data/"
 best_rf_location = data_path + 'best_rf.joblib'
 model_rf = load(best_rf_location)
 
+# Length of each line id
+line_id_lengths = {1: 8100, 2: 10000, 3: 12000, 4: 8610}
+line_tp_percentage = {1: 0.15, 2: 0.85, 3: 0, 4: 0.38}
+
 def sort_stats(stat):
     return collect_time(stat['timestamp'])
 
@@ -56,12 +60,38 @@ def check_paths(paths):
             path = path.rename(columns={"timestamp": "date"})
             print(path)
             line = int(path.iloc[0].line_id)
-            path = pd.DataFrame([create_training_path(path)])
-            predicted_rf = int(model_rf.predict(path)[0])
+            training_path = pd.DataFrame([create_training_path(path)])
+            predicted_rf = int(model_rf.predict(training_path)[0])
 
             print("Comparando...")
             print("Deu: " + str(predicted_rf) + " - e era pra dar: " + str(line))
+    
+            length = path_length(path)
+            print("percorrido: " + str(length))
 
+            completed_percentual_line = 100 * length / line_id_lengths[line]
+            completed_percentual_predicted = 100 * length / line_id_lengths[predicted_rf]
+
+            print("Percentual line: " + str(completed_percentual_line) + "%")
+            print("Percentual predicted: " + str(completed_percentual_predicted) + "%")
+
+            if predicted_rf != line:
+                if line_tp_percentage[line] < completed_percentual_line:
+                    print("Acho que a linha esta incorreta")
+
+                    if line_tp_percentage[line] < completed_percentual_predicted:
+                        print("Acho que a linha correta eh: " + str(predicted_rf))
+
+def path_length(path):
+    length = 0
+    print(len(path.index))
+    for index in range(1, len(path.index)):
+        coordinate1 = Coordinate(path.iloc[index-1].latitude, path.iloc[index-1].longitude)
+        print(coordinate1.latitude)
+        coordinate2 = Coordinate(path.iloc[index].latitude, path.iloc[index].longitude)
+        length += distance_between(coordinate1, coordinate2)
+    
+    return length
 
 base_api = 'https://api.demo.konkerlabs.net'
 username = "student_smartcampus@konkerlabs.com"
@@ -94,7 +124,7 @@ while True:
             if paths[guid]["still_appending"] == False:
                 paths[guid]["path"] = pd.DataFrame()
                 paths[guid]["has_distance_from_greater_from_home"] = False
-        print(paths)
+        #print(paths)
     
         check_paths(paths)
     time.sleep(5)
