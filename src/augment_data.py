@@ -1,21 +1,5 @@
 import pandas as pd
 import numpy as np
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
-
-def plot_path(path_df):
-
-	latitudes = path_df.latitude
-	longitudes = path_df.longitude
-	
-	numberOfDots = len(path_df.index)
-	colors = cm.rainbow(np.linspace(0, 1, numberOfDots))
-	
-	plt.scatter(longitudes, latitudes, color=colors)
-	
-	#plt.scatter(bus_stop_longitude, bus_stop_latitude, marker='*')
-		
-	plt.show()
 
 media_path_location = '../data/media_paths_date.csv'
 
@@ -25,11 +9,16 @@ paths_df = pd.read_csv(media_path_location)
 new_train_df = paths_df[paths_df.index_path % 4 == 0].copy()
 model_train_df = new_train_df.copy()
 
+model_train_df.to_parquet('../data/augmented_media_paths_date_0.parquet.gzip', compression='gzip')
+
 multiply = 2000
 
 current_index_path = paths_df.index_path.max() + 1
 
 for mult in range(1, multiply + 1):
+
+	if mult % 100 == 0:
+		print(mult)
 
 	current_df = model_train_df.copy()
 	size = len(current_df.index)
@@ -40,6 +29,4 @@ for mult in range(1, multiply + 1):
 
 	current_df.index_path += (mult*current_df.index_path.max())
 
-	new_train_df = new_train_df.append(current_df)
-
-new_train_df.to_csv('../data/augmented_media_paths_date.csv', index=False)
+	current_df.to_parquet('../data/augmented_media_paths_date_' + str(mult) + '.parquet.gzip', compression='gzip')
