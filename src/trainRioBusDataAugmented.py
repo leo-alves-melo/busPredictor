@@ -64,6 +64,7 @@ train_df = []
 print("lendo dados...")
 
 for index in range(2000):
+    filename = '../data/augmented_media_paths_date_' + str(index) + '.csv'
     df = pd.read_csv(filename, index=False)
     train_df.append(df)
 
