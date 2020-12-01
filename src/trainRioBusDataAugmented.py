@@ -63,7 +63,7 @@ train_df = []
 
 print("lendo dados...")
 
-for index in range(2000):
+for index in range(2):
     filename = '../data/augmented_media_paths_date_' + str(index) + '.csv'
     df = pd.read_csv(filename, index=False)
     train_df.append(df)
@@ -74,6 +74,32 @@ train_df = pd.concat(train_df, axis=0, ignore_index=True)
 
 print("dados lidos!")
 print(train_df)
+
+print('manejando dados...')
+
+x_length = 60
+print('lenght:', x_length)
+total = train_df.index_path.max() + 1
+count_int = 0
+
+train_df = pd.DataFrame()
+minimum_path = int(train_df.index_path.min())
+maximum_path = int(train_df.index_path.max()) + 1
+
+for path_id in range(minimum_path, maximum_path):
+
+	current_path_df = train_df[train_df.index_path == path_id]
+
+	if len(current_path_df.index) == 0:
+		continue
+
+	line = current_path_df.iloc[0].id_line
+	
+	for lenght in range(1, len(current_path_df.index) + 1, 8):
+
+		current_train_df = [create_training_path(current_path_df.head(lenght)) + [line]]
+
+		train_df = train_df.append(current_train_df)
 
 y_df = train_df[180]
 X_df = train_df.drop(columns=[180])
