@@ -12,9 +12,9 @@ model_train_df.to_csv('../data/augmented_train_0.csv', index=False)
 
 multiply = 50
 
-current_index_path = paths_df.index_path.max() + 1
-
 for mult in range(1, multiply + 1):
+
+	print(mult)
 
 	current_df = model_train_df.copy()
 	size = len(current_df.index)
