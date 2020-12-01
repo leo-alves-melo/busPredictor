@@ -64,8 +64,9 @@ train_df = []
 print("lendo dados...")
 
 for index in range(2):
+	print('index:', index)
     filename = '../data/augmented_media_paths_date_' + str(index) + '.csv'
-    df = pd.read_csv(filename, index=False)
+    df = pd.read_csv(filename)
     train_df.append(df)
 
 print("Criando df...")
@@ -82,7 +83,7 @@ print('lenght:', x_length)
 total = train_df.index_path.max() + 1
 count_int = 0
 
-train_df = pd.DataFrame()
+new_train_df = pd.DataFrame()
 minimum_path = int(train_df.index_path.min())
 maximum_path = int(train_df.index_path.max()) + 1
 
@@ -99,10 +100,10 @@ for path_id in range(minimum_path, maximum_path):
 
 		current_train_df = [create_training_path(current_path_df.head(lenght)) + [line]]
 
-		train_df = train_df.append(current_train_df)
+		new_train_df = new_train_df.append(current_train_df)
 
-y_df = train_df[180]
-X_df = train_df.drop(columns=[180])
+y_df = new_train_df[180]
+X_df = new_train_df.drop(columns=[180])
 
 X_train_all, X_test, y_train_all, y_test = train_test_split(X_df, y_df, random_state=1, test_size=0.2, stratify=y_df)
 
