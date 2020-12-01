@@ -146,7 +146,34 @@ for index in range(2):
 	print('index:', index)
 	filename = '../data/augmented_media_paths_date_' + str(index) + '.csv'
 	df = pd.read_csv(filename)
-	train_df.append(df)
+	x_length = 60
+
+	total = df.index_path.max() + 1
+	count_int = 0
+
+	new_train_df = pd.DataFrame()
+	minimum_path = int(df.index_path.min())
+	maximum_path = int(df.index_path.max()) + 1
+
+	for path_id in range(minimum_path, maximum_path):
+
+		print('path', path_id, 'de', maximum_path)
+
+		current_path_df = df[df.index_path == path_id]
+
+		if len(current_path_df.index) == 0:
+			continue
+
+		line = current_path_df.iloc[0].id_line
+		
+		for lenght in range(1, len(current_path_df.index) + 1, 8):
+
+			current_train_df = [create_training_path(current_path_df.head(lenght)) + [line]]
+
+			new_train_df = new_train_df.append(current_train_df)
+	
+	new_train_df.to_csv('../data/processed_' + str(index) + '.csv')
+exit()
 
 print("Criando df...")
 
@@ -157,29 +184,7 @@ print(train_df)
 
 print('manejando dados...')
 
-x_length = 60
-print('lenght:', x_length)
-total = train_df.index_path.max() + 1
-count_int = 0
 
-new_train_df = pd.DataFrame()
-minimum_path = int(train_df.index_path.min())
-maximum_path = int(train_df.index_path.max()) + 1
-
-for path_id in range(minimum_path, maximum_path):
-
-	current_path_df = train_df[train_df.index_path == path_id]
-
-	if len(current_path_df.index) == 0:
-		continue
-
-	line = current_path_df.iloc[0].id_line
-	
-	for lenght in range(1, len(current_path_df.index) + 1, 8):
-
-		current_train_df = [create_training_path(current_path_df.head(lenght)) + [line]]
-
-		new_train_df = new_train_df.append(current_train_df)
 
 y_df = new_train_df[180]
 X_df = new_train_df.drop(columns=[180])
