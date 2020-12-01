@@ -14,6 +14,85 @@ highest_longitude = 47.095658
 lowest_longitude = 47.046078
 hightest_time = 86400
 lowest_time = 0
+
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
+from math import sin, cos, sqrt, atan2, radians
+from joblib import dump, load
+import numpy as np
+import sys
+import math
+
+def distance_between(position1, position2):
+	# approximate radius of earth in km
+	R = 6373.0
+
+	lat1 = radians(position1.latitude)
+	lon1 = radians(position1.longitude)
+	lat2 = radians(position2.latitude)
+	lon2 = radians(position2.longitude)
+
+	dlon = lon2 - lon1
+	dlat = lat2 - lat1
+	
+	a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+	c = 2 * atan2(sqrt(a), sqrt(1 - a))
+	
+	distance = R * c
+	
+	return distance
+
+def calculate_total_distance(path_df):
+	total_distance = 0
+	last_row = path_df.iloc[0]
+	for index, row in path_df.tail(-1).iterrows():
+		total_distance += distance_between(last_row, row)
+		last_row = row
+	return total_distance
+
+# Create the training path vector using the total distance as a divisor
+def create_training_path(path_df):
+	empty_coordinate = [0.0, 0.0, 0.0]
+	total_distance = calculate_total_distance(path_df)
+	path_size = len(path_df.index)
+	cluster_distance = total_distance/path_size
+	new_path = []
+	path_index = 0
+
+	for index in range(0, x_length):
+
+		if path_index >= path_size:
+			new_path += empty_coordinate
+			continue
+
+		current_distance = 0
+		cluster = pd.DataFrame()
+		last_row = path_df.iloc[path_index]
+		cluster = cluster.append(last_row)
+		path_index += 1
+
+		if path_index >= path_size:
+			new_path += [cluster.iloc[0].date, cluster.iloc[0].latitude, cluster.iloc[0].longitude]
+			continue
+
+		while current_distance < cluster_distance:
+			current_row = path_df.iloc[path_index]
+			current_distance += distance_between(last_row, current_row)
+			cluster = cluster.append(current_row)
+			path_index += 1
+			last_row = current_row
+
+			if path_index >= path_size:
+				break
+
+		mean_cluster = cluster.mean()
+		cluster_coordinate = [mean_cluster.date, mean_cluster.latitude, mean_cluster.longitude]
+
+		new_path += cluster_coordinate
+
+	return new_path
+
 def adjustTimeColumn(time):
 	if time == 0:
 		return 0
@@ -43,16 +122,16 @@ def adjustTrainDf(df):
 	return df
 
 def convertTo3D(df):
-    time_train_df = []
-    lat_train_df = []
-    lon_train_df = []
-    for line in range(len(df.index)):
+	time_train_df = []
+	lat_train_df = []
+	lon_train_df = []
+	for line in range(len(df.index)):
 
-        time_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 0].to_numpy()))
-        lat_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 1].to_numpy()))
-        lon_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 2].to_numpy()))
-    new_df = np.array([time_train_df, lat_train_df, lon_train_df])
-    return new_df.reshape((new_df.shape[1], 60, 3))
+		time_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 0].to_numpy()))
+		lat_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 1].to_numpy()))
+		lon_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 2].to_numpy()))
+	new_df = np.array([time_train_df, lat_train_df, lon_train_df])
+	return new_df.reshape((new_df.shape[1], 60, 3))
 
 # Constants and global variables
 
@@ -65,9 +144,9 @@ print("lendo dados...")
 
 for index in range(2):
 	print('index:', index)
-    filename = '../data/augmented_media_paths_date_' + str(index) + '.csv'
-    df = pd.read_csv(filename)
-    train_df.append(df)
+	filename = '../data/augmented_media_paths_date_' + str(index) + '.csv'
+	df = pd.read_csv(filename)
+	train_df.append(df)
 
 print("Criando df...")
 
