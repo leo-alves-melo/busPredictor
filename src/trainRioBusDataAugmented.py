@@ -135,7 +135,6 @@ def convertTo3D(df):
 
 # Constants and global variables
 
-train_location = '../data/train_df.csv'
 best_nn_location = '../data/best_nn_cross_rio_bus_data.h5'
 
 train_df = []
@@ -144,36 +143,8 @@ print("lendo dados...")
 
 for index in range(2):
 	print('index:', index)
-	filename = '../data/augmented_media_paths_date_' + str(index) + '.csv'
+	filename = '../data/augmented_train_' + str(index) + '.csv'
 	df = pd.read_csv(filename)
-	x_length = 60
-
-	total = df.index_path.max() + 1
-	count_int = 0
-
-	new_train_df = pd.DataFrame()
-	minimum_path = int(df.index_path.min())
-	maximum_path = int(df.index_path.max()) + 1
-
-	for path_id in range(minimum_path, maximum_path):
-
-		print('path', path_id, 'de', maximum_path)
-
-		current_path_df = df[df.index_path == path_id]
-
-		if len(current_path_df.index) == 0:
-			continue
-
-		line = current_path_df.iloc[0].id_line
-		
-		for lenght in range(1, len(current_path_df.index) + 1, 8):
-
-			current_train_df = [create_training_path(current_path_df.head(lenght)) + [line]]
-
-			new_train_df = new_train_df.append(current_train_df)
-	
-	new_train_df.to_csv('../data/processed_' + str(index) + '.csv')
-exit()
 
 print("Criando df...")
 
