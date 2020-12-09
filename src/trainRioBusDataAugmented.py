@@ -141,13 +141,16 @@ train_df = []
 
 print("lendo dados...")
 
-for index in range(2):
+for index in range(100):
 	print('index:', index)
 	filename = '../data/augmented_train_' + str(index) + '.csv'
-	df = pd.read_csv(filename)
+	df = pd.read_csv(filename, header=None)
+	data = convertTo3D(df)
+	pd.DataFrame(data).to_csv('../data/3d_riobus_' + str(index) + '.csv')
 
+exit()
 print("Criando df...")
-
+print(pd)
 train_df = pd.concat(train_df, axis=0, ignore_index=True)
 
 print("dados lidos!")
@@ -157,8 +160,8 @@ print('manejando dados...')
 
 
 
-y_df = new_train_df[180]
-X_df = new_train_df.drop(columns=[180])
+y_df = train_df[180]
+X_df = train_df.drop(columns=[180])
 
 X_train_all, X_test, y_train_all, y_test = train_test_split(X_df, y_df, random_state=1, test_size=0.2, stratify=y_df)
 
