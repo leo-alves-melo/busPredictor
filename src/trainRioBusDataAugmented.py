@@ -127,10 +127,10 @@ def convertTo3D(df):
 	lon_train_df = []
 	for line in range(len(df.index)):
 
-		time_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 0].to_numpy()))
-		lat_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 1].to_numpy()))
-		lon_train_df.append(list(df.iloc[line][df.iloc[line].index % 3 == 2].to_numpy()))
-	new_df = np.array([time_train_df, lat_train_df, lon_train_df])
+		time_train_df.append(df.iloc[line][df.iloc[line].index % 3 == 0].to_numpy())
+		lat_train_df.append(df.iloc[line][df.iloc[line].index % 3 == 1].to_numpy())
+		lon_train_df.append(df.iloc[line][df.iloc[line].index % 3 == 2].to_numpy())
+	new_df = np.array([np.array(time_train_df), np.array(lat_train_df), np.array(lon_train_df)])
 	return new_df.reshape((new_df.shape[1], 60, 3))
 
 # Constants and global variables
@@ -145,8 +145,11 @@ for index in range(100):
 	print('index:', index)
 	filename = '../data/augmented_train_' + str(index) + '.csv'
 	df = pd.read_csv(filename, header=None)
-	data = convertTo3D(df)
-	pd.DataFrame(data).to_csv('../data/3d_riobus_' + str(index) + '.csv')
+	y_df = df[180]
+	X_df = df.drop(columns=[180])
+	data = convertTo3D(X_df)
+	pd.DataFrame(data).to_csv('../data/3d_riobus_' + str(index) + '_x.csv')
+	pd.DataFrame(y_df).to_csv('../data/3d_riobus_' + str(index) + '_y.csv')
 
 exit()
 print("Criando df...")
