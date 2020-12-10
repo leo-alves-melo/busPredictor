@@ -146,8 +146,8 @@ X_df = []
 
 for index in range(2):
 	print('index:', index)
-	y_df.append(pd.read_csv('../data/3d_riobus_' + str(index) + '_y.csv', header=None))
-	current_x = pd.read_csv('../data/3d_riobus_' + str(index) + '_x.csv', header=None)
+	y_df.append(pd.read_csv('../data/3d_riobus_' + str(index) + '_y.csv', header=None).drop(columns=[0]).iloc[1:])
+	current_x = pd.read_csv('3d_riobus_' + str(0) + '_x.csv', header=None).drop(columns=[0]).iloc[1:]
 	X_df.append(pd.DataFrame(current_x.to_numpy().reshape((current_x.shape[0], 60, 3))))
 	
 print("Criando df...")
