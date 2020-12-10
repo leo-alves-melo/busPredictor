@@ -146,7 +146,6 @@ X_df = []
 
 for index in range(2):
 	print('index:', index)
-	df = pd.read_csv(filename, header=None)
 	y_df.append(pd.read_csv('../data/3d_riobus_' + str(index) + '_y.csv', header=None))
 	current_x = pd.read_csv('../data/3d_riobus_' + str(index) + '_x.csv', header=None)
 	X_df.append(current_x.reshape((current_x.shape[0], 60, 3)))
