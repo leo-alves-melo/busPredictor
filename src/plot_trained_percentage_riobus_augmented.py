@@ -246,7 +246,7 @@ print('plotando...')
 print(correctness)
 
 with open('../data/correctness_riobus_aumented.json', 'w') as file:
-	json.dumb(file, correctness)
+	json.dumb(correctness, file)
 
 plt.plot(percentage_conv_nn, marker='', color='olive', label="Convolution NN")
 plt.legend(loc='upper left')
