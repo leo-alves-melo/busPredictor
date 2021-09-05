@@ -1,24 +1,26 @@
 #Encoding: UTF-8
 import sys
-sys.path.insert(0, "/usr/local/lib/python2.7/site-packages")
 import pandas as pd
-from lib.classes import *
-from lib.data_filter import *
-from lib.data_processor import *
-from lib.data_normalization import *
-from lib.training_path import *
 import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import ComplementNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import MultinomialNB
+from math import sin, cos, sqrt, atan2, radians
 import matplotlib.pyplot as plt
 from joblib import dump, load
 import json
 
+highest_latitude = 22.836006
+lowest_latitude = 22.801396
+highest_longitude = 47.095658
+lowest_longitude = 47.046078
+hightest_time = 86400
+lowest_time = 0
+
 print('Inicializando...')
-plot = True
+plot = False
 if plot:
 	with open('../data/correctness_percentage.json') as arq:
 		correctness = json.load(arq)
@@ -61,10 +63,108 @@ if plot:
 
 	exit()
 
-train_df = pd.read_csv('../data/train_df.csv', header=None).iloc[::-1]
+def calculate_total_distance(path_df):
+	total_distance = 0
+	last_row = path_df.iloc[0]
+	for index, row in path_df.tail(-1).iterrows():
+		total_distance += distance_between(last_row, row)
+		last_row = row
+	return total_distance
 
-y_df = train_df[180]
-X_df = train_df.drop(columns=[180])
+# Create the training path vector using the total distance as a divisor
+def create_training_path(path_df):
+	empty_coordinate = [0.0, 0.0, 0.0]
+	total_distance = calculate_total_distance(path_df)
+	path_size = len(path_df.index)
+	cluster_distance = total_distance/path_size
+	new_path = []
+	path_index = 0
+
+	for index in range(0, 60):
+
+		if path_index >= path_size:
+			new_path += empty_coordinate
+			continue
+
+		current_distance = 0
+		cluster = pd.DataFrame()
+		last_row = path_df.iloc[path_index]
+		cluster = cluster.append(last_row)
+		path_index += 1
+
+		if path_index >= path_size:
+			new_path += [cluster.iloc[0].date, cluster.iloc[0].latitude, cluster.iloc[0].longitude]
+			continue
+
+		while current_distance < cluster_distance:
+			current_row = path_df.iloc[path_index]
+			current_distance += distance_between(last_row, current_row)
+			cluster = cluster.append(current_row)
+			path_index += 1
+			last_row = current_row
+
+			if path_index >= path_size:
+				break
+
+		mean_cluster = cluster.mean()
+		cluster_coordinate = [mean_cluster.date, mean_cluster.latitude, mean_cluster.longitude]
+
+		new_path += cluster_coordinate
+
+	return new_path
+
+def distance_between(position1, position2):
+	# approximate radius of earth in km
+	R = 6373.0
+
+	lat1 = radians(position1.latitude)
+	lon1 = radians(position1.longitude)
+	lat2 = radians(position2.latitude)
+	lon2 = radians(position2.longitude)
+
+	dlon = lon2 - lon1
+	dlat = lat2 - lat1
+	
+	a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+	c = 2 * atan2(sqrt(a), sqrt(1 - a))
+	
+	distance = R * c
+	
+	return distance
+
+def adjustTrainDf(df):
+
+	for column in df:
+		# For time columns
+		if column % 3 == 0:
+			df[column] = df[column].apply(adjustTimeColumn)
+		elif column % 3 == 1:
+			df[column] = df[column].apply(adjustLatitudeColumn)
+		elif column % 3 == 2:
+			df[column] = df[column].apply(adjustLongitudeColumn)
+
+	return df
+
+def adjustTimeColumn(time):
+	if time == 0:
+		return 0
+	return (time - lowest_time)/(hightest_time - lowest_time)
+
+def adjustLatitudeColumn(latitude):
+	if latitude == 0:
+		return 0
+	return (latitude - lowest_latitude)/(highest_latitude - lowest_latitude)
+
+def adjustLongitudeColumn(longitude):
+	if longitude == 0:
+		return 0
+	return (longitude - lowest_longitude)/(highest_longitude - lowest_longitude)
+
+
+train_df = pd.read_csv('../data/train_df_45.csv', header=None)
+
+y_df = train_df[45*3]
+X_df = train_df.drop(columns=[45*3])
 
 X_train_all, X_test, y_train_all, y_test = train_test_split(X_df, y_df, random_state=1, test_size=0.2, stratify=y_df)
 
@@ -83,8 +183,8 @@ minimum_path = int(paths_df.index_path.min())
 maximum_path = int(paths_df.index_path.max()) + 1
 
 correctness = {}
-model_conv_nn = load('../data/best_convolution_nn.joblib')
-
+model_conv_nn = load('../data/best_convolution_nn_45.joblib')
+exit()
 max_lenght = 0
 
 print('Criando dados do grafico...')

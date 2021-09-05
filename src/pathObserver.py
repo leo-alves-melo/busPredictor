@@ -69,11 +69,11 @@ def check_paths(paths):
             length = path_length(path)
             print("percorrido: " + str(length))
 
-            completed_percentual_line = 100 * length / line_id_lengths[line]
-            completed_percentual_predicted = 100 * length / line_id_lengths[predicted_rf]
+            completed_percentual_line = length / line_id_lengths[line]
+            completed_percentual_predicted = length / line_id_lengths[predicted_rf]
 
-            print("Percentual line: " + str(completed_percentual_line) + "%")
-            print("Percentual predicted: " + str(completed_percentual_predicted) + "%")
+            print("Percentual line: " + str(completed_percentual_line))
+            print("Percentual predicted: " + str(completed_percentual_predicted))
 
             if predicted_rf != line:
                 if line_tp_percentage[line] < completed_percentual_line:
@@ -87,7 +87,6 @@ def path_length(path):
     print(len(path.index))
     for index in range(1, len(path.index)):
         coordinate1 = Coordinate(path.iloc[index-1].latitude, path.iloc[index-1].longitude)
-        print(coordinate1.latitude)
         coordinate2 = Coordinate(path.iloc[index].latitude, path.iloc[index].longitude)
         length += distance_between(coordinate1, coordinate2)
     

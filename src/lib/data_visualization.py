@@ -3,7 +3,7 @@
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
-from constants import *
+#from constants import *
 
 def plot_path(path_df):
 
@@ -17,7 +17,7 @@ def plot_path(path_df):
 	
 	plt.scatter(longitudes, latitudes, color=colors)
 	
-	plt.scatter(bus_stop_longitude, bus_stop_latitude, marker='*')
+	#plt.scatter(bus_stop_longitude, bus_stop_latitude, marker='*')
 		
 	plt.show()
 
@@ -33,7 +33,7 @@ def save_path(path_df, name):
 	
 	plt.scatter(longitudes, latitudes, color=colors)
 	
-	plt.scatter(bus_stop_longitude, bus_stop_latitude, marker='*')
+	#plt.scatter(bus_stop_longitude, bus_stop_latitude, marker='*')
 		
 	plt.savefig(name)
 	plt.clf()

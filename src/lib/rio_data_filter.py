@@ -62,17 +62,24 @@ def distance_between_literal(lat1, lon1, lat2, lon2):
 	return distance
 
 def collect_time(timestamp):
-	
+
 	if isinstance(timestamp, str):
-		try:
-			return datetime.datetime.strptime(timestamp, time_formatter1)
+		try: 
+			return datetime.datetime.strptime(timestamp, time_formatter_rio)
 		except:
 			try:
-				return datetime.datetime.strptime(timestamp, time_formatter2)
-			except: 
-				return datetime.datetime.strptime(timestamp, time_formatter3)
+				return datetime.datetime.strptime(timestamp, time_formatter1)
+			except:
+				try:
+					return datetime.datetime.strptime(timestamp, time_formatter2)
+				except: 
+					return datetime.datetime.strptime(timestamp, time_formatter3)
 	elif isinstance(timestamp, pd.Series):
-		return timestamp[0]
+		try:
+			return timestamp[0]
+		except:
+			return timestamp
+
 	else:
 		if isinstance(timestamp, unicode):
 			return collect_time(timestamp.encode('ascii','ignore'))
@@ -116,35 +123,35 @@ def parse_coordinate(json):
 						  json['geolocation']['lon'])
 
 # Append the next coordenate if it is valid. Returns false when the path ended
-def validate_and_append_next_coordinate(row, path_df, has_distance_from_greater_from_home): 
+def validate_and_append_next_coordinate(row, path_df, has_distance_from_greater_from_home, homes): 
 	
-	coordinate = Coordinate(row['latitude'].iloc[0], row['longitude'].iloc[0], row['timestamp'].iloc[0], row['line_id'].iloc[0])
+	coordinate = Coordinate(row['latitude'], row['longitude'], row['time'], row['line'])
 	# Checks if it is the first coordinate of the path
 	if len(path_df.index) == 0:
 		
 		# Check if is close to the home, and if is, append the coordinate
-		if distance_between(coordinate, home) < 0.1:
+		if distance_between(coordinate, homes[0]) < minimum_distance or distance_between(coordinate, homes[1]) < minimum_distance:
 			return True, pd.DataFrame().append(row), has_distance_from_greater_from_home
 		else:
 			return True, pd.DataFrame(), has_distance_from_greater_from_home
 		
 	last_row = path_df.tail(1)
-	last_coordinate = Coordinate(last_row['latitude'].iloc[0], last_row['longitude'].iloc[0], last_row['timestamp'].iloc[0], last_row['line_id'].iloc[0])
+	last_coordinate = Coordinate(last_row['latitude'].iloc[0], last_row['longitude'].iloc[0], last_row['time'].iloc[0], last_row['line'].iloc[0])
 	
 	# Check if is duplicated
 	if coordinate == last_coordinate:
 		return True, path_df, has_distance_from_greater_from_home
 	
 	# Checks if the velocity of the next coordinate is too big or greater than zero
-	if velocity_between(coordinate, last_coordinate) > 100 and velocity_between(coordinate, last_coordinate) > 0:
-		return True, path_df, has_distance_from_greater_from_home
+	#if velocity_between(coordinate, last_coordinate) > 100 and velocity_between(coordinate, last_coordinate) > 0:
+	#	return True, path_df, has_distance_from_greater_from_home
 	
 	# Checks the time difference
 
 	time1 = collect_time(last_coordinate.timestamp)
 	time2 = collect_time(coordinate.timestamp)
-	  
-	if (time2 - time1).total_seconds() > 5*60:
+
+	if (time2 - time1).total_seconds() > max_time_wait:
 		return False, path_df, has_distance_from_greater_from_home
 	
 	# Checks the id
@@ -154,18 +161,18 @@ def validate_and_append_next_coordinate(row, path_df, has_distance_from_greater_
 	# Check if the path have at least one coordinate far away from the home, so that the path started
 	if has_distance_from_greater_from_home:
 		# If we are close to home
-		if distance_between(coordinate, home) < 0.1:
+		if distance_between(coordinate, homes[0]) < minimum_distance or distance_between(coordinate, homes[1]) < minimum_distance:
 			new_df = path_df.append(row)
 			return False, new_df, has_distance_from_greater_from_home
 		else:
 			return True, path_df.append(row), has_distance_from_greater_from_home
 	else:
-		if distance_between(coordinate, home) > 1:
+		if distance_between(coordinate, homes[0]) > 1 and distance_between(coordinate, homes[1]) > 1:
 			return True, path_df.append(row), True
 		else:
 			return True, path_df.append(row), False
 	
-def create_paths(df):
+def create_paths(df, final_stops):
 
 	paths_df = pd.DataFrame()
 	current_path_df = pd.DataFrame()
@@ -183,11 +190,11 @@ def create_paths(df):
 				print('')
 			
 			
-		still_appending, current_path_df, has_distance_from_greater_from_home = validate_and_append_next_coordinate(row, current_path_df, has_distance_from_greater_from_home)
+		still_appending, current_path_df, has_distance_from_greater_from_home = validate_and_append_next_coordinate(row, current_path_df, has_distance_from_greater_from_home, final_stops[row.line])
 		if not still_appending:
 			
 			# If there is few values on the path, we can discart it
-			if len(current_path_df.index) < 100:
+			if len(current_path_df.index) < 10:
 				current_path_df = pd.DataFrame()
 				
 			else:

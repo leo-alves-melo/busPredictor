@@ -1,12 +1,6 @@
 #Encoding: UTF-8
 import sys
-sys.path.insert(0, "/usr/local/lib/python2.7/site-packages")
 import pandas as pd
-from lib.classes import *
-from lib.data_filter import *
-from lib.data_processor import *
-from lib.data_normalization import *
-from lib.training_path import *
 import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
@@ -22,49 +16,49 @@ plot = True
 if plot:
 	with open('../data/correctness_percentage_all_ensembled.json') as arq:
 		correctness = json.load(arq)
+	with open('../data/correctness_bayes.json') as arq:
+		correctness_bayes = json.load(arq)
+	with open('../data/correct_times_series.json') as arq:
+		correctness_time_series = json.load(arq)
+	with open('../data/correctness_riobus_completed.json') as arq:
+		correctness_rio_bus = json.load(arq)
 
 	max_lenght = 100
-	for line in range(1, 5):
+	percentage_svm = [0.0]*(max_lenght)
+	percentage_nn = [0.0]*(max_lenght)
+	percentage_dump = [0.0]*(max_lenght)
+	percentage_rf = [0.0]*(max_lenght)
+	percentage_ensembled_rf = [0.0]*(max_lenght)
+	percentage_bayes = [0.0]*(max_lenght)
+	percentage_time_series = [0.0]*(max_lenght)
+	percentage_riobus = [0.0]*(max_lenght)
+	percentage_manual = [97.86]*(max_lenght)
+	for lenght in range(max_lenght):
+		percentage_svm[lenght] = 100 * float(correctness['correct_svm_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+		percentage_dump[lenght] = 100 * float(correctness['correct_dump_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+		percentage_rf[lenght] = 100 * float(correctness['correct_rf_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+		percentage_nn[lenght] = 100 * float(correctness['correct_conv_nn_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
+		percentage_bayes[lenght] = 100 * float(correctness_bayes['correct_bayes_' + str(lenght+100)])/float(correctness_bayes['total_' + str(lenght+100)])
+		percentage_time_series[lenght] = 100 * float(       correctness_time_series['correct_rf_' + str(lenght+1) + "_1"] + correctness_time_series['correct_rf_' + str(lenght+1) + "_2"] + correctness_time_series['correct_rf_' + str(lenght+1) + "_3"] + correctness_time_series['correct_rf_' + str(lenght+1) + "_4"] )/float( correctness_time_series['total_' + str(lenght+1) + "_1"] + correctness_time_series['total_' + str(lenght+1) + "_2"] + correctness_time_series['total_' + str(lenght+1) + "_3"] + correctness_time_series['total_' + str(lenght+1) + "_4"]  )
+		percentage_riobus[lenght] = 100 * float(correctness_rio_bus['correct_conv_nn_' + str(lenght+1)])/float(correctness_rio_bus['total_' + str(lenght+1)])
 
-		percentage_svm = [0.0]*(max_lenght+1)
-		percentage_nn = [0.0]*(max_lenght+1)
-		percentage_dump = [0.0]*(max_lenght+1)
-		percentage_rf = [0.0]*(max_lenght+1)
-		percentage_ensembled_nn = [0.0]*(max_lenght+1)
-		percentage_ensembled_rf = [0.0]*(max_lenght+1)
-		percentage_ensembled_bayes = [0.0]*(max_lenght+1)
-		percentage_ensembled_svm = [0.0]*(max_lenght+1)
-		for lenght in range(max_lenght):
-			
-			try:
-				percentage_svm[lenght+1] = 100 * float(correctness['correct_svm_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-				percentage_dump[lenght+1] = 100 * float(correctness['correct_dump_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-				percentage_rf[lenght+1] = 100 * float(correctness['correct_rf_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-				percentage_nn[lenght+1] = 100 * float(correctness['correct_conv_nn_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-				percentage_ensembled_nn[lenght+1] = 100 * float(correctness['correct_ensembled_nn_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-				percentage_ensembled_rf[lenght+1] = 100 * float(correctness['correct_ensembled_rf_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-				percentage_ensembled_bayes[lenght+1] = 100 * float(correctness['correct_ensembled_bayes_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-				percentage_ensembled_svm[lenght+1] = 100 * float(correctness['correct_ensembled_svm_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-			except:
-				pass
+	print('plotando...')
 
-		print('plotando...')
-
-		plt.plot(percentage_dump, marker='', color='green', label=u"Algoritmo de Georreferência")
-		plt.plot(percentage_nn, marker='', markerfacecolor='blue', label="Rede Neural Convolucional")
-		plt.plot(percentage_svm, marker='', color='olive', label="SVM")
-		plt.plot(percentage_rf, marker='', color='red', label="Random Forest")
-		#plt.plot(percentage_ensembled_nn, marker='', color='yellow', label="Ensembled Learning NN")
-		plt.plot(percentage_ensembled_rf, marker='', color='black', label="Ensembled Learning RF")
-		plt.plot(percentage_ensembled_svm, marker='', color='orange', label="Ensembled Learning SVM")
-		plt.plot(percentage_ensembled_bayes, marker='', color='purple', label="Ensembled Learning Bayes")
-		plt.legend(loc='best')
-		plt.xlabel(u'Porcentagem de completude do caminho')
-		plt.ylabel(u'Porcentagem de acerto')
-		plt.title(u'Porcentagem de acerto x Porcentagem de completude do caminho')
-		plt.grid(True)
-		plt.show()
-		plt.clf()
+	#plt.plot(percentage_manual, marker='', color='black', label=u"Configuração manual")
+	plt.plot(percentage_dump, marker='', color='green', label=u"Alg. Georreferência")
+	plt.plot(percentage_nn, marker='', markerfacecolor='blue', label=u"RNC unidimensional")
+	plt.plot(percentage_svm, marker='', color='olive', label="SVM")
+	plt.plot(percentage_rf, marker='', color='red', label="Floresta Aleatória")
+	plt.plot(percentage_bayes, marker='', color='brown', label="Naïve Bayes")
+	plt.plot(percentage_time_series, marker='', color='orange', label=u"Séries Temporais")
+	plt.plot(percentage_riobus, marker='', color='purple', label="RNC do RioBus")
+	plt.legend(loc='best')
+	plt.xlabel(u'Porcentagem de completude do trajeto', fontsize=14)
+	plt.ylabel(u'Acurácia', fontsize=14)
+	plt.title(u'Acurácia x Porcentagem de completude do trajeto', fontsize=16)
+	plt.grid(True)
+	plt.show()
+	plt.clf()
 
 	exit()
 

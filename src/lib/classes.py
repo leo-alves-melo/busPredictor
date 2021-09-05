@@ -1,6 +1,6 @@
 # Classes definitions
 
-from constants import *
+from lib.constants import *
 
 # Coordinate of a 
 class Coordinate():
@@ -56,6 +56,38 @@ class DumpAlgorithm():
 			return 2
 
 		return 3
+
+class SimilarityAlgorithm():
+
+	def __init__(self, window_size, paths_models, similarity_threshold):
+		self.window_size = window_size
+		self.paths_models = paths_models
+		self.similarity_threshold = similarity_threshold**2
+
+	def fit(self, X, y):
+		pass
+
+	def similarity(self, path, model):
+		neighboors = 0
+		for index in range(len(path.index) - self.window_size):
+			current_similarity = 0
+			for window_index in range(self.window_size):
+				current_similarity += (path.iloc[index + window_index].latiude - model.iloc[window_index].latitude)**2 + (path.iloc[index + window_index].longitude - model.iloc[window_index].longitude)**2
+			if current_similarity < self.similarity_threshold:
+				neighboors += 1
+		
+		return neighboors/(len(path.index) - self.window_size)
+	
+	def predict(self, path):
+		best_model = None
+		best_similarity = 0
+		for model in self.paths_models:
+			current_similarity = self.similarity(path, self.paths_models[model])
+			if current_similarity > best_similarity:
+				best_similarity = current_similarity
+				best_model = model
+
+		return best_model
 
 # Bayes algorithm fits the model for 350 positions, 
 # which means almost 1h oh bus travel

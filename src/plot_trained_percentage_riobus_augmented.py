@@ -135,42 +135,25 @@ def getMaxIndex(result):
 print('Inicializando...')
 plot = False
 if plot:
-	with open('../data/correctness_percentage.json') as arq:
-		correctness = json.load(arq)
-
-	with open('../data/correctness_percentage_conv_nn_2.json') as arq:
+	with open('../data/correctness_riobus_aumented.json') as arq:
 		correctness_conv_nn = json.load(arq)
 
-	with open('../data/correctness_percentage_svm.json') as arq:
-		correctness_svm = json.load(arq)
-
-	print(correctness)
-
 	max_lenght = 101
-	percentage_nn = [0.0]*max_lenght
 	percentage_conv_nn = [0.0]*max_lenght
-	percentage_rf = [0.0]*max_lenght
-	percentage_dump = [0.0]*max_lenght
-	percentage_svm = [0.0]*max_lenght
-	for lenght in range(max_lenght):
-		try:
-			percentage_svm[lenght+1] = 100 * float(correctness_svm['correct_svm_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-			percentage_conv_nn[lenght+1] = 100 * float(correctness_conv_nn['correct_conv_nn_' + str(lenght)])/float(correctness_conv_nn['total_' + str(lenght)])
-			percentage_rf[lenght+1] = 100 * float(correctness['correct_rf_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-			percentage_dump[lenght+1] = 100 * float(correctness['correct_dump_' + str(lenght+1)])/float(correctness['total_' + str(lenght+1)])
-		except:
-			pass
+	
+	for lenght in range(1, max_lenght):
+		#try:
+		percentage_conv_nn[lenght] = 100 * float(correctness_conv_nn['correct_conv_nn_' + str(int(lenght))])/float(correctness_conv_nn['total_' + str(int(lenght))])
+		#except:
+		#	pass
 
 	print('plotando...')
-
-	plt.plot(percentage_dump, marker='', color='green', label="Algoritmo de Proximidade")
-	plt.plot(percentage_svm, marker='', markerfacecolor='blue', label="SVM")
+	print(percentage_conv_nn)
 	plt.plot(percentage_conv_nn, marker='', color='olive', label="Convolution NN")
-	plt.plot(percentage_rf, marker='', color='red', label="Random Forest")
 	plt.legend(loc='upper left')
 	plt.xlabel(u'Porcentagem de completude do caminho')
 	plt.ylabel(u'Porcentagem de acerto')
-	plt.title(u'Porcentagem de acerto x Porcentagem de completude do caminho para diferentes algoritmos')
+	plt.title(u'Porcentagem de acerto x Porcentagem de completude do caminho')
 	plt.grid(True)
 	plt.show()
 
@@ -185,7 +168,7 @@ minimum_path = int(paths_df.index_path.min())
 maximum_path = int(paths_df.index_path.max()) + 1
 
 correctness = {}
-model_conv_nn = load_model('../data/best_nn_cross_rio_bus_data_augmented.h5')
+model_conv_nn = load_model('../data/best_nn_cross_rio_bus_completed.h5')
 
 max_lenght = 0
 
@@ -245,7 +228,7 @@ print('plotando...')
 
 print(correctness)
 
-with open('../data/correctness_riobus_aumented.json', 'w') as file:
+with open('../data/correctness_riobus_completed.json', 'w') as file:
 	json.dump(correctness, file)
 
 plt.plot(percentage_conv_nn, marker='', color='olive', label="Convolution NN")
