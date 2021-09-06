@@ -125,7 +125,7 @@ def parse_coordinate(json):
 # Append the next coordenate if it is valid. Returns false when the path ended
 def validate_and_append_next_coordinate(row, path_df, has_distance_from_greater_from_home, homes): 
 	
-	coordinate = Coordinate(row['latitude'], row['longitude'], row['time'], row['line'])
+	coordinate = Coordinate(row['latitude'], row['longitude'], row['datetime'], row['line'])
 	# Checks if it is the first coordinate of the path
 	if len(path_df.index) == 0:
 		
@@ -136,7 +136,7 @@ def validate_and_append_next_coordinate(row, path_df, has_distance_from_greater_
 			return True, pd.DataFrame(), has_distance_from_greater_from_home
 		
 	last_row = path_df.tail(1)
-	last_coordinate = Coordinate(last_row['latitude'].iloc[0], last_row['longitude'].iloc[0], last_row['time'].iloc[0], last_row['line'].iloc[0])
+	last_coordinate = Coordinate(last_row['latitude'].iloc[0], last_row['longitude'].iloc[0], last_row['datetime'].iloc[0], last_row['line'].iloc[0])
 	
 	# Check if is duplicated
 	if coordinate == last_coordinate:

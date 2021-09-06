@@ -4,21 +4,20 @@ import pandas as pd
 
 data_path_all = '/Volumes/SD Leo/bus_gps_data/treatedGPSDataWithoutEmptyLinesSeparateColumns.csv'
 data_path = '/Volumes/SD Leo/bus_gps_data/treatedGPSDataOnlyRoute.csv'
+small_riobus = '../data/mini_riobus.csv'
 
-df = pd.read_csv(data_path_all)
+df = pd.read_csv(small_riobus, parse_dates=['datetime'], dtype={'line': object})
 
-line = '371.0'
-final_stops = {line: [Coordinate(latitude=-22.907849, longitude=-43.184382), Coordinate(latitude=-22.901384, longitude=-43.345651)]}
+file = open('../data/riobus_coordinates.json')
+data = json.load(file)
 
-small_path = df[df.order == 'C51623'][df.line == line]
+final_stops = {}
+for key in data.keys():
+    final_stops[key] = [Coordinate(latitude=data[key][0][0], longitude=data[key][0][1]), Coordinate(latitude=data[key][1][0], longitude=data[key][1][1])]
 
-small_path.to_csv('small.csv')
-exit()
-paths = []
-lines = [371]
-minimun_distance = 0.8
+df = df[df.line.isin(data.keys())]
 
-path = create_paths(small_path, final_stops)
+path = create_paths(df, final_stops)
 print(path)
 
 exit()
