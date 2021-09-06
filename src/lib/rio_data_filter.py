@@ -63,6 +63,8 @@ def distance_between_literal(lat1, lon1, lat2, lon2):
 
 def collect_time(timestamp):
 
+	return timestamp
+
 	if isinstance(timestamp, str):
 		try: 
 			return datetime.datetime.strptime(timestamp, time_formatter_rio)
@@ -185,7 +187,7 @@ def create_paths(df, final_stops):
 		
 		if 100*index/total > count_int + 1:
 			count_int += 1
-			#print str(count_int) + "% - " + str(len(paths_df.index)),
+			print(str(count_int) + "% - " + str(len(paths_df.index)), end='')
 			if count_int % 10 == 0:
 				print('')
 			
