@@ -1,4 +1,4 @@
-from data_filter import *
+from lib.rio_data_filter import *
 
 x_length = 60
 
@@ -32,7 +32,7 @@ def create_training_path(path_df):
 		path_index += 1
 
 		if path_index >= path_size:
-			new_path += [cluster.iloc[0].date, cluster.iloc[0].latitude, cluster.iloc[0].longitude]
+			new_path += [cluster.iloc[0].datetime, cluster.iloc[0].latitude, cluster.iloc[0].longitude]
 			continue
 
 		while current_distance < cluster_distance:
@@ -46,7 +46,7 @@ def create_training_path(path_df):
 				break
 
 		mean_cluster = cluster.mean()
-		cluster_coordinate = [mean_cluster.date, mean_cluster.latitude, mean_cluster.longitude]
+		cluster_coordinate = [mean_cluster.datetime, mean_cluster.latitude, mean_cluster.longitude]
 
 		new_path += cluster_coordinate
 

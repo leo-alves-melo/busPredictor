@@ -4,7 +4,7 @@ import pandas as pd
 
 data_path_all = '/Volumes/SD Leo/bus_gps_data/treatedGPSDataWithoutEmptyLinesSeparateColumns.csv'
 data_path = '/Volumes/SD Leo/bus_gps_data/treatedGPSDataOnlyRoute.csv'
-small_riobus = '../data/mini_riobus.csv'
+small_riobus = '../data/rio_paths_10.csv'
 
 df = pd.read_csv(small_riobus, parse_dates=['datetime'], dtype={'line': object})
 
