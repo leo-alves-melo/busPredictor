@@ -22,7 +22,6 @@ def plot_path_with_map(path_df, map_path, coordinates_box):
 
 	plt.show()
 	plt.clf()
-	plt.cla()
 
 def plot_path(path_df):
 
